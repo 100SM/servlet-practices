@@ -15,6 +15,7 @@ public class EmaillistDaoTest {
 		List<EmaillistVo> list = new EmaillistDao().findAll();
 		for (EmaillistVo vo : list) {
 			System.out.println(vo);
+			//커밋
 		}
 	}
 }
