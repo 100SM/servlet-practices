@@ -13,7 +13,7 @@ List<GuestbookVo> list = dao.findAll();
 <title>방명록</title>
 </head>
 <body>
-	<form action="/guestbook01/add.jsp" method="post">
+	<form action="<%=request.getContextPath()%>/add.jsp" method="post">
 		<table border=1 width=500>
 			<tr>
 				<td>이름</td>
@@ -39,7 +39,7 @@ List<GuestbookVo> list = dao.findAll();
 			<td><%=list.get(i).getName()%></td>
 			<td><%=list.get(i).getReg_date()%></td>
 			<td><a
-				href="/guestbook01/deleteform.jsp?no=<%=list.get(i).getNo()%>">삭제</a></td>
+				href="<%=request.getContextPath()%>/deleteform.jsp?no=<%=list.get(i).getNo()%>">삭제</a></td>
 		</tr>
 		<tr>
 			<td colspan=4><%=list.get(i).getMessage().replace("\n", "<br>")%></td>
