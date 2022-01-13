@@ -16,5 +16,5 @@ vo.setEmail(email);
 
 new EmaillistDao().insert(vo);
 
-response.sendRedirect("/emaillist01");
+response.sendRedirect(request.getContextPath());
 %>
