@@ -18,12 +18,7 @@ public class EmaillistDao {
 		ResultSet rs = null;
 
 		try {
-			// 1. JDBC 드라이버 로딩
-			Class.forName("com.mysql.cj.jdbc.Driver");
-
-			// 2. 연결하기
-			String url = "jdbc:mysql://localhost:3306/webdb?characterEncoding=UTF-8&serverTimezone=UTC";
-			conn = DriverManager.getConnection(url, "webdb", "webdb");
+			conn = getConnection();
 
 			// 3. SQL 준비
 			String sql = "select no, first_name, last_name, email from emaillist order by no desc";
@@ -48,8 +43,6 @@ public class EmaillistDao {
 
 				result.add(vo);
 			}
-		} catch (ClassNotFoundException e) {
-			System.out.print("드라이버 로딩 실패 : " + e);
 		} catch (SQLException e) {
 			System.out.print("error : " + e);
 		} finally {
@@ -78,12 +71,7 @@ public class EmaillistDao {
 		ResultSet rs = null;
 
 		try {
-			// 1. JDBC 드라이버 로딩
-			Class.forName("com.mysql.cj.jdbc.Driver");
-
-			// 2. 연결하기
-			String url = "jdbc:mysql://localhost:3306/webdb?characterEncoding=UTF-8&serverTimezone=UTC";
-			conn = DriverManager.getConnection(url, "webdb", "webdb");
+			conn = getConnection();
 
 			// 3. SQL 준비
 			String sql = "insert into emaillist values(null, ?, ?, ?)";
@@ -98,8 +86,6 @@ public class EmaillistDao {
 			// 5. SQL 실행
 			result = pstmt.executeUpdate() == 1;
 
-		} catch (ClassNotFoundException e) {
-			System.out.print("드라이버 로딩 실패 : " + e);
 		} catch (SQLException e) {
 			System.out.print("error : " + e);
 		} finally {
@@ -119,5 +105,21 @@ public class EmaillistDao {
 			}
 		}
 		return result;
+	}
+
+	private Connection getConnection() throws SQLException {
+		Connection conn = null;
+
+		try {
+			// 1. JDBC 드라이버 로딩
+			Class.forName("com.mysql.cj.jdbc.Driver");
+
+			// 2. 연결하기
+			String url = "jdbc:mysql://localhost:3306/webdb?characterEncoding=UTF-8&serverTimezone=UTC";
+			conn = DriverManager.getConnection(url, "webdb", "webdb");
+		} catch (ClassNotFoundException e) {
+			System.out.print("드라이버 로딩 실패 : " + e);
+		}
+		return conn;
 	}
 }
