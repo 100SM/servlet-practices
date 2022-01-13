@@ -17,6 +17,4 @@
 	-	guestbook02
 
 3. mysite
-	-	mysite02
-	 
-	
+	-	mysite02	
