@@ -20,7 +20,6 @@
 		<c:set var="col" value="3" />
 	</c:if>
 
-
 	<table border="1px" cellspacing="0" cellpadding="10">
 		<c:forEach begin="0" end="${row-1 }" step="1" var="r">
 			<tr>
