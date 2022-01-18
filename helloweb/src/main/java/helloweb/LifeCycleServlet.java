@@ -2,8 +2,6 @@ package helloweb;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,33 +9,32 @@ import javax.servlet.http.HttpServletResponse;
 public class LifeCycleServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public LifeCycleServlet() {
-
-	}
-
+	@Override
 	public void init() throws ServletException {
-		System.out.println("LifeCycle.init() called");
+		System.out.println("LifeCycleServlet.init() called");
 		super.init();
 	}
 
-	public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException {
-		System.out.println("LifeCycle.service() called");
-		super.service(req, res);
+	@Override
+	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		System.out.println("LifeCycleServlet.service(...) called");
+		super.service(req, resp);
 	}
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		System.out.println("LifeCycle.doGet() called");
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("LifeCycleServlet.doGet(...) called");
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		System.out.println("LifeCycle.doPost() called");
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("LifeCycleServlet.doPast(...) called");
 		doGet(request, response);
 	}
 
+	@Override
 	public void destroy() {
-		System.out.println("LifeCycle.destroy() called");
+		System.out.println("LifeCycleServlet.destroy() called");
 		super.destroy();
-	}
+	}	
 }
