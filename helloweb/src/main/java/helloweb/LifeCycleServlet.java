@@ -11,6 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 public class LifeCycleServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	public LifeCycleServlet() {
+
+	}
+
 	public void init() throws ServletException {
 		System.out.println("LifeCycle.init() called");
 		super.init();
