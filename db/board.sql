@@ -8,7 +8,7 @@ select b.no, b.title, b.contents, a.name from user a, board b where a.no=b.user_
 SELECT 
     no,
     title,
-    contents,
+    content,
     hit,
     g_no,
     o_no,
@@ -21,9 +21,16 @@ FROM
         JOIN
     user ON board.user_id = user.id
 WHERE
-    title LIKE '%검색어%'
+    title LIKE '%%'
 ORDER BY g_no DESC , o_no ASC;
 
 
 -- insert
-insert into board values(null, 'testTitle', 'testContent', 0, ifnull((select max(g_no)+1 from board), 1), 1, 1, now(), 1);
+insert into board values(null, 'testTitle', 'testContent', 0, (select g_no from (select ifnull(max(g_no)+1, 1) as g_no from board) as tmp), 1, 1, now(), 1);
+insert into board values(null, ? , ?, 0, (select num from( select ifnull(max(g_no)+1,1) as num from board) tmp), 1, 1, now(), 2);
+
+
+update board set o_no=o_no+1 where o_no > order_no and g_no = group_no;
+
+-- delete
+delete from board where no = 1;
